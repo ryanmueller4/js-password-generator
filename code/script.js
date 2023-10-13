@@ -13,23 +13,34 @@ function generatePassword() {
   var specialList = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "+", "?", "/", "-", ":", ";", "[", "]", "{", "}", ".", "<", ">", "=", "_", "`", "|", "~"];
   var chosenList = [];
 
-  var myPasswordLength = (getpassLength())
+  var myPasswordLength = (getpassLength());
 
-  lowerChoice = window.prompt("Would you like to include lowercase characters? (yes/no):");
-  if (lowerChoice == "yes") {
-    chosenList = chosenList.concat(lowerList);
-  }
-  upperChoice = window.prompt("Would you like to include uppercase characters? (yes/no):");
-  if (upperChoice == "yes") {
-    chosenList = chosenList.concat(upperList);
-  }
-  numberChoice = window.prompt("Would you like to include numbers? (yes/no):");
-  if (numberChoice == "yes") {
-    chosenList = chosenList.concat(numberList);
-  }
-  specialChoice = window.prompt("Would you like to include special characters? (yes/no):");
-  if (specialChoice == "yes") {
-    chosenList = chosenList.concat(specialList);
+  charChoices = 4
+  while (charChoices == 4) {
+    lowerChoice = window.prompt("Would you like to include lowercase characters? (yes/no):");
+    if (lowerChoice == "yes") {
+      chosenList = chosenList.concat(lowerList);
+      charChoices -= 1
+    }
+    upperChoice = window.prompt("Would you like to include uppercase characters? (yes/no):");
+    if (upperChoice == "yes") {
+      chosenList = chosenList.concat(upperList);
+      charChoices -= 1
+    }
+    numberChoice = window.prompt("Would you like to include numbers? (yes/no):");
+    if (numberChoice == "yes") {
+      chosenList = chosenList.concat(numberList);
+      charChoices -= 1
+    }
+    specialChoice = window.prompt("Would you like to include special characters? (yes/no):");
+    if (specialChoice == "yes") {
+      chosenList = chosenList.concat(specialList);
+      charChoices -= 1
+    }
+    if (charChoices == 4) {
+      mustChoose = window.alert("You must include at least one type of character.")
+    }
+    console.log(charChoices)
   }
   
   console.log(lowerChoice)
@@ -41,8 +52,10 @@ function generatePassword() {
   for (var i = 0; i < myPasswordLength; i++) {
     myPassword += chosenList[Math.floor(Math.random() * (chosenList.length))];
   }
+  console.log(myPassword)
+  console.log(myPassword.length)
 
-  return myPassword
+  return myPassword;
 }
 
 function getpassLength() {
